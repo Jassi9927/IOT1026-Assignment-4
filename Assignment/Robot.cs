@@ -33,29 +33,34 @@ public class Robot
         NumCommands = numCommands;
     }
 
-   // this function is responsible for executing the commands present in robot's que
-   // this will return true if the command is executed correctly and false if not
+    // this function is responsible for executing the commands present in robot's que
+    // this will return true if the command is executed correctly and false if not
     public bool Run()
     {
-        if (_commands.Count <= 0){
-        return false;}
-        while (_commands.Count >=1){
+        if (_commands.Count <= 0)
+        {
+            return false;
+        }
+        while (_commands.Count >= 1)
+        {
             var c = _commands.Dequeue();
             c.Run(this);
-        Console.WriteLine(this);
+            Console.WriteLine(this);
         }
         return true;
     }
 
     public bool LoadCommand(RobotCommand command)
     {
-        if (_commandsLoaded  >= NumCommands){
-        return false;
+        if (_commandsLoaded >= NumCommands)
+        {
+            return false;
         }
-        else{
-        _commands.Enqueue(command);
-        _commandsLoaded+=1;
-        return true;
+        else
+        {
+            _commands.Enqueue(command);
+            _commandsLoaded += 1;
+            return true;
         }
     }
 }

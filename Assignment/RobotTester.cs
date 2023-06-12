@@ -1,4 +1,4 @@
-using Assignment.InterfaceCommand;
+﻿using Assignment.InterfaceCommand;
 
 namespace Assignment;
 
@@ -9,10 +9,12 @@ static class RobotTester
         int totalCommands = 1;
         Robot robot = new Robot();
         Console.WriteLine("Choose 6 Commands : \nON\nOFF\nNORTH\nSOUTH\nEAST\nSOUTH\nWEST\nREBOOT\n");
-        do{
+        do
+        {
             Console.Write($"Choose {totalCommands} command : ");
             string? con = Console.ReadLine()?.ToUpper();
-            RobotCommand? command = com switch{
+            RobotCommand? command = com switch
+            {
                 "ON" => new OnCommand(),
                 "OFF" => new OffCommand(),
                 "NORTH" => new NorthCommand(),
@@ -22,13 +24,15 @@ static class RobotTester
                 "REBOOT" => new RebootCommand(),
                 _ => null
             };
-            if (command!=null){
+            if (command != null)
+            {
                 robot.LoadCommand(command);
                 totalCommands++;
             }
-            else{
+            else
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("------- Please enter valid commands only --------");
+                Console.WriteLine("------- Please enter valid commands only --------");
                 Console.ResetColor();
             }
         } while (totalCommands <= 6);
